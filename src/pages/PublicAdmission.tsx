@@ -45,6 +45,10 @@ export default function PublicAdmission() {
         status: 'Pending',
       });
 
+      if (!admission) {
+        throw new Error('Failed to create admission');
+      }
+
       // Generate application ID for display
       const appId = `APP-2025-${admission.id.slice(0, 8).toUpperCase()}`;
       setApplicationId(appId);

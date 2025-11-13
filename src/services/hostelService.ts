@@ -258,9 +258,13 @@ export class HostelService {
 
     if (error) throw error;
 
-    // Update room status to occupied
+    if (!room) {
+      throw new Error('Room not found');
+    }
+
+    // Update room status to Occupied
     await this.updateRoom(allocation.room_id, {
-      status: 'occupied',
+      status: 'Occupied',
       current_occupancy: (room.current_occupancy || 0) + 1,
     });
 

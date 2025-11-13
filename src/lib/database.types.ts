@@ -50,6 +50,9 @@ export interface Database {
           address: string
           guardian_name: string
           guardian_phone: string
+          aadhaar: string | null
+          dob: string | null
+          status: string | null
           created_at: string
           updated_at: string
         }
@@ -67,6 +70,9 @@ export interface Database {
           address: string
           guardian_name: string
           guardian_phone: string
+          aadhaar?: string | null
+          dob?: string | null
+          status?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -84,6 +90,9 @@ export interface Database {
           address?: string
           guardian_name?: string
           guardian_phone?: string
+          aadhaar?: string | null
+          dob?: string | null
+          status?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -102,6 +111,8 @@ export interface Database {
           guardian_phone: string
           status: 'Pending' | 'Approved' | 'Rejected'
           remarks: string | null
+          approved_by: string | null
+          approved_at: string | null
           created_at: string
           updated_at: string
         }
@@ -118,6 +129,8 @@ export interface Database {
           guardian_phone: string
           status?: 'Pending' | 'Approved' | 'Rejected'
           remarks?: string | null
+          approved_by?: string | null
+          approved_at?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -134,6 +147,8 @@ export interface Database {
           guardian_phone?: string
           status?: 'Pending' | 'Approved' | 'Rejected'
           remarks?: string | null
+          approved_by?: string | null
+          approved_at?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -148,6 +163,7 @@ export interface Database {
           payment_date: string | null
           transaction_id: string | null
           payment_method: string | null
+          paid_at: string | null
           created_at: string
           updated_at: string
         }
@@ -160,6 +176,7 @@ export interface Database {
           payment_date?: string | null
           transaction_id?: string | null
           payment_method?: string | null
+          paid_at?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -172,6 +189,7 @@ export interface Database {
           payment_date?: string | null
           transaction_id?: string | null
           payment_method?: string | null
+          paid_at?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -367,6 +385,108 @@ export interface Database {
           message?: string
           read?: boolean
           created_at?: string
+        }
+      }
+      fee_payments: {
+        Row: {
+          id: string
+          student_id: string
+          amount: number
+          payment_date: string
+          transaction_id: string
+          payment_method: string
+          status: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          student_id: string
+          amount: number
+          payment_date: string
+          transaction_id: string
+          payment_method: string
+          status?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          student_id?: string
+          amount?: number
+          payment_date?: string
+          transaction_id?: string
+          payment_method?: string
+          status?: string
+          created_at?: string
+        }
+      }
+      hostel_rooms: {
+        Row: {
+          id: string
+          room_number: string
+          block: string
+          floor: number
+          capacity: number
+          current_occupancy: number
+          hostel_type: 'Boys' | 'Girls'
+          status: 'Available' | 'Occupied' | 'Under Maintenance'
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          room_number: string
+          block: string
+          floor: number
+          capacity: number
+          current_occupancy?: number
+          hostel_type: 'Boys' | 'Girls'
+          status?: 'Available' | 'Occupied' | 'Under Maintenance'
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          room_number?: string
+          block?: string
+          floor?: number
+          capacity?: number
+          current_occupancy?: number
+          hostel_type?: 'Boys' | 'Girls'
+          status?: 'Available' | 'Occupied' | 'Under Maintenance'
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      hostel_allocations: {
+        Row: {
+          id: string
+          student_id: string
+          room_id: string
+          check_in_date: string
+          check_out_date: string | null
+          status: 'Active' | 'Checked Out'
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          student_id: string
+          room_id: string
+          check_in_date: string
+          check_out_date?: string | null
+          status?: 'Active' | 'Checked Out'
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          student_id?: string
+          room_id?: string
+          check_in_date?: string
+          check_out_date?: string | null
+          status?: 'Active' | 'Checked Out'
+          created_at?: string
+          updated_at?: string
         }
       }
     }
